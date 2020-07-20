@@ -2,6 +2,7 @@ import logging
 import random
 import requests
 import azure.functions as func
+from azure.cosmos import CosmosClient
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -14,9 +15,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     letters = getletters.text
     answer = []
 
+
     for i in range(5):
         answer.append(numbers[i])
         answer.append(letters[i])
     finalans="".join(answer)
 
+
+    client = CosmosClient(endpoint, key)
+
+    database_name = "Usernames"
+    client.create_database_if_not_exist(id=database_name)
     return str(finalans)
+ 
