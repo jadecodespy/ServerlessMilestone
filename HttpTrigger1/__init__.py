@@ -10,7 +10,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     getletters = request.get('https://jadeazfunction.azurewebsites.net/api/HttpTrigger3?code=3vYSLRruH2cdxNqFDmH1OW56C0BNmJpnENKhpuk08uwWR4bGbhU2Ig==')
     
     numbers = getnumbers.text 
-    letters = getletter.text
+    letters = getletters.text
     answer = []
 
     for i in range(5):
