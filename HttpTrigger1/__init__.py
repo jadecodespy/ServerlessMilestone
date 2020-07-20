@@ -1,5 +1,6 @@
 import logging
-import random,requests
+import random
+import requests
 import azure.functions as func
 
 
