@@ -20,11 +20,21 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         answer.append(numbers[i])
         answer.append(letters[i])
     finalans="".join(answer)
-
-
+    
+    key = "nvzumL7YLMAIS9H6P3Ya2aID31eY0n4yvwzkioiIgPXLw8Tvy9KGt8RX4EPFi81PN4fgN5nQ4LxMTio8S6XmWA=="
+    endpoint = "https://serverlessmilestone-1.documents.azure.com:443/;AccountKey=nvzumL7YLMAIS9H6P3Ya2aID31eY0n4yvwzkioiIgPXLw8Tvy9KGt8RX4EPFi81PN4fgN5nQ4LxMTio8S6XmWA==;"
     client = CosmosClient(endpoint, key)
 
     database_name = "Usernames"
     client.create_database_if_not_exist(id=database_name)
+    
+    container_name= "UsernameContainer"
+    container = database.create_container_if_not_exists(
+        id=container_name,
+        partition_key=PartitionKey(path/"id"), offer_throughput=400
+    )
+    
     return str(finalans)
+
+
  
